@@ -6,33 +6,33 @@
 The following libraries will be used in this example, ensure that they are imported:
 
     import json
-  import urllib
-  import urllib2
+    import urllib
+    import urllib2
 
 To perform a query,  create a parameter object. This can be done using urllib. A simple example is shown below where photos can be paginated with skip and limit:
 
-  params = urllib.urlencode({'limit': 200, 'skip': 100})
+    params = urllib.urlencode({'limit': 200, 'skip': 100})
 
 The limit has a range of 1-1000, and denotes the maximum number of results that can be obtained at once. Skip is used to skip a set of results. In the above example the first 100 are skipped and a maximum of 200 results are retrieved. This is useful for looping through results should one have a large number of photos to retrieve.
 
 The header must contain an api key. Create a header object to be used when performing requests:
 
-  headers = {"foko-api-key": “INSERT KEY HERE”}
+    headers = {"foko-api-key": “INSERT KEY HERE”}
 
 To perform a simple GET request to retrieve all photos without any constraints the following can be done:
 
-  #make a json request
-  url = "https://cloud.foko.co/api/v1/photos?%s"
-  request = urllib2.Request(url % params, None, headers)
-          try:
-              response = urllib2.urlopen(request)
-              data = json.load(response)
-          except urllib2.URLError, e:
-              print e.reason
-              return
-          except NameError:
-              print "Json could not be parsed, response failed."
-              return
+    #make a json request
+    url = "https://cloud.foko.co/api/v1/photos?%s"
+    request = urllib2.Request(url % params, None, headers)
+            try:
+                response = urllib2.urlopen(request)
+                data = json.load(response)
+            except urllib2.URLError, e:
+                print e.reason
+                return
+            except NameError:
+                print "Json could not be parsed, response failed."
+                return
 
 
 
@@ -94,30 +94,24 @@ An example of the json that would be returned, with some of the important items 
 
 The attribute “createdAt” is a filtering criteria used to retrieve photos by date. The format of this date is ISO 8601 in millisecond precision. To perform a query to retrieve all photos past a certain date (but not including that specific date), the parameter object would be:
 
-  # Date is the following format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' (ISO 8601)
-  startDate = “2014-10-01T23:49:36.353Z”
-  params = urllib.urlencode({"where": json.dumps({
-                  "createdAt": {
-                      "$gt": {
-                          "__type": "Date",
-                          "iso": startDate
-                      }
-                  }
-              }), 'limit': limit, 'skip': skip});
+    # Date is the following format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' (ISO 8601)
+    startDate = “2014-10-01T23:49:36.353Z”
+    params = urllib.urlencode({"where": json.dumps({
+                    "createdAt": {
+                        "$gt": {
+                            "__type": "Date",
+                            "iso": startDate
+                        }
+                    }
+                }), 'limit': limit, 'skip': skip});
 
 To retrieve all photos before a certain date $gt would be replaced by $lt (less than). The supported constraint parameters are:
 
-$gt = greater than
-$lt = less than
-$gte = greater than or equal to
-$lte = greater than or equal to
-$and = to be used in conjunction with two of the above
-
     $gt = greater than
-  $lt = less than
-  $gte = greater than or equal to
-  $lte = greater than or equal to
-  $and = to be used in conjunction with two of the above
+    $lt = less than
+    $gte = greater than or equal to
+    $lte = greater than or equal to
+    $and = to be used in conjunction with two of the above
 
 To retrieve photos that were added after October 1st, up to and including October 8th, the parameter object would be:
 
