@@ -138,7 +138,7 @@ To download a series of photos, one could iterate through the json object and us
     #data is retrieved from the previous response object
     for item in data:
         req = urllib2.Request(item["largeImage"], None, headers)
-        response = urllib2.urlo`enter code here`pen(req)
+        response = urllib2.urlopen(req)
         output = open(“foko, 'wb')
         output.write(response.read())
         output.close()
