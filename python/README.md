@@ -1,7 +1,8 @@
 **Foko Customer API - Python**
 
 
-> In order to proceed, an api key is required. This api key will need to be added to the header when making api requests
+> In order to proceed, an api key is required. This api key will need to be added to the header when making api requests.
+> This has been tested using Python 2.7.8. Using prior versions may result in SSL errors.
 
 The following libraries will be used in this example, ensure that they are imported:
 
