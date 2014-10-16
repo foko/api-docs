@@ -14,13 +14,33 @@ You can make GET request with the API KEY in the header to retrieve you photos. 
 This will return you a JSON array of 20 photos in this format:
 
     [{
-        "description": "The photo description",
+        "description": "The first photo description",
         "largeImage": "https://cloud.foko.co/api/v1/photo/somefile-l.jpg/ABC123/DEF456",
         "mediumImage": "https://cloud.foko.co/api/v1/photo/somefile-m.jpg/ABC123/DEF456",
         "smallImage": "https://cloud.foko.co/api/v1/photo/somefile-s.jpg/ABC123/DEF456",
         "objectId": "ABCDEFGHJJ",
         "createdAt": "2014-09-02T17:14:34.847Z",
-        "updatedAt": "2014-09-02T17:14:34.847Z"
+        "updatedAt": "2014-09-02T17:14:34.847Z",
+        "likeCount": 20,
+        "commentCount": 13,
+        "isPrivate": false,
+        "largeImageLength": 51186,
+        "mediumImageLength": 7836,
+        "smallImageLength": 1786,
+        "owner": {
+            "firstName": "Colin",
+            "lastName": "McDonald",
+            "email": "cmcdonald@foko.co",
+            "title": "Marketer",
+            "objectId": "NXu4MsGmZo",
+            "createdAt": "2014-08-11T10:29:13.749Z",
+            "updatedAt": "2014-09-02T17:29:36.828Z",
+            "image": {
+                "largeImage": "https://cloud.foko.co/api/v1/photo/somefile-l.jpg/ABC123/DEF456",
+                "mediumImage": "https://cloud.foko.co/api/v1/photo/somefile-m.jpg/ABC123/DEF456",
+                "smallImage": "https://cloud.foko.co/api/v1/photo/somefile-s.jpg/ABC123/DEF456",
+            }
+        }
     }]
 
 Once you recieve your list of files, you can parse the JSON results and make separate requests to download the binary photo files as specified in the "largeImage", "mediumImage" and "smallImage" properties.
