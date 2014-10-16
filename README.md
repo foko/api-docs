@@ -1,7 +1,7 @@
 **Foko Customer API**
 
 
-> In order to proceed, an api key is required. This api key will need to be added to the header (foko-api-key) when making api requests
+> In order to proceed, you must request an API Key from your Foko representative. This api key will be used in the header (foko-api-key) when making api requests.
 
 All of your photos can be queried at the following URL:
 
