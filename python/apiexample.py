@@ -5,12 +5,8 @@ import urllib2
 from datetime import datetime
 import csv
 
-apiKey = "APIKEY"
-# url = "https://raph.parseapp.com/api/v1/photos/"
-url = "https://raph.parseapp.com/api/v1/photos?%s"
-host = "raph.parseapp.com"
-path = "/api/v1/photos"
-pathQuery = "/api/v1/photos?%s"
+apiKey = "YOUR_API_KEY"
+url = "https://cloud.foko.co/api/v1/photos?%s"
 headers = {"foko-api-key": apiKey}
 images = []
 fileNameBackup = "backup.csv"

@@ -38,59 +38,18 @@ To perform a simple GET request to retrieve all photos without any constraints t
 
 An example of the json that would be returned, with some of the important items that could be saved in a csv file for keeping a record:
 
-    "ACL": {
-                "GYJzYXtZUq": {
-                    "read": true,
-                    "write": true
-                },
-                "role:nmFRcVvJRn-AdminRole": {
-                    "write": true
-                },
-                "role:nmFRcVvJRn-EmployeeRole": {
-                    "read": true,
-                    "write": true
-                }
-            },
-            "commentCount": 0,
-            "comments": {
-                "__type": "Relation",
-                "className": "PhotoComment"
-            },
-            "company": {
-                "__type": "Pointer",
-                "className": "Company",
-                "objectId": "nmFRcVvJRn"
-            },
-            "createdAt": "2014-09-26T01:26:20.169Z",
-            "description": "",
-            "hashtags": [],
-            "invitedInternalProfiles": {
-                "__type": "Relation",
-                "className": "Profile"
-            },
-            "isPrivate": false,
-            "isVisibleExternal": false,
+    [
+        {
+            "description": "The photo description",
             "largeImage": "https://cloud.foko.co/api/v1/photo/tfss-ee7146c0-bc6e-479c-844c-f81d5109e00c-file/0KHxQgHd1d/nmFRcVvJRn",
             "largeImageLength": 113585,
-            "likeCount": 0,
             "mediumImage": "https://cloud.foko.co/api/v1/photo/tfss-5ea1e1b8-a320-44d3-991f-8ec51f6ed4fd-file/0KHxQgHd1d/nmFRcVvJRn",
             "mediumImageLength": 47498,
-            "objectId": "0KHxQgHd1d",
-            "owner": {
-                "__type": "Pointer",
-                "className": "Profile",
-                "objectId": "TXo4T1jWpD"
-            },
-            "position": {
-                "__type": "GeoPoint",
-                "latitude": 45.3935559,
-                "longitude": -75.7283736
-            },
-            "smallImage": "https://cloud.foko.co/api/v1/photo/tfss-7997ae5e-6c08-4cb6-93b4-5f140d519c99-file/0KHxQgHd1d/nmFRcVvJRn",
-            "smallImageLength": 3326,
+            "objectId": "ABCDEF1234",
+            "createdAt": "2014-09-26T01:26:20.169Z",
             "updatedAt": "2014-09-26T01:26:20.169Z",
-            "words": []
         }
+    ]
 
 The attribute “createdAt” is a filtering criteria used to retrieve photos by date. The format of this date is ISO 8601 in millisecond precision. To perform a query to retrieve all photos past a certain date (but not including that specific date), the parameter object would be:
 
