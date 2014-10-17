@@ -19,6 +19,7 @@ This will return you a JSON array of 20 photos in this format:
         "mediumImage": "https://cloud.foko.co/api/v1/photo/somefile-m.jpg/ABC123/DEF456",
         "smallImage": "https://cloud.foko.co/api/v1/photo/somefile-s.jpg/ABC123/DEF456",
         "objectId": "ABCDEFGHJJ",
+	"linkToFoko":"https://app.foko.co/launch?photo=ABCDEFGHJJ",
         "createdAt": "2014-09-02T17:14:34.847Z",
         "updatedAt": "2014-09-02T17:14:34.847Z",
         "likeCount": 20,
@@ -33,6 +34,7 @@ This will return you a JSON array of 20 photos in this format:
             "email": "cmcdonald@foko.co",
             "title": "Marketer",
             "objectId": "NXu4MsGmZo",
+	    "linkToFoko":"https://app.foko.co/launch?follower=NXu4MsGmZo",
             "createdAt": "2014-08-11T10:29:13.749Z",
             "updatedAt": "2014-09-02T17:29:36.828Z",
             "image": {
