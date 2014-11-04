@@ -1,5 +1,8 @@
-**Foko Customer API**
+**Foko API**
 
+Take your Foko photos and put them on your Intranet, Word Press, Drop Box, wherever!
+
+Here's how:
 
 > In order to proceed, you must email a request for an API Key from "api@foko.co". This api key will be used in the header (foko-api-key) when making api requests.
 
