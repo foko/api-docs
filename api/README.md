@@ -1,3 +1,4 @@
+(DEPRECATED - STAY TUNED FOR NEW RELEASE)
 **Foko API**
 
 Take your Foko photos and put them on your Intranet, Word Press, Drop Box, wherever!
