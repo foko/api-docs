@@ -1,20 +1,38 @@
 Foko Widget for WordPress
 
+IMPORTANT: You need to install a self hosted version of wordpress in order to install this plugin (e.g. use wordpress.org instead of wordpress.com).
+
 Installtion Steps:
 
-1. Download the zip file 
+1. Download the zip file from https://github.com/FoKo/api/archive/master.zip.
 
-2. Extract the contents of the .zip file and copy the entire folder to your server where wordpress is installed: /wordpress/wp-content/plugins
+2. Extract the zip file to your desktop, go to your newly extracted folder and locate the "photofeed" folder from teh address: /api-master/widgets/wordpress
 
-3. Login to wordpress, navigate to Admin page -> Plugins
+3. With your FTP program, upload the "photofeed" folder to the wordpress/wp-content/plugins folder in your WordPress directory online.
 
-4. Activate Foko Widget from the list of installed plugins
+4. Login to wordpress, navigate to Admin page -> Plugins
 
-5. Now navigate to Appearance -> Widgets and add the Foko widget to the Content sidebar just like any other widgets
+5. Activate Foko Widget from the list of installed plugins
 
-6. Expand the newly added widget to open the config page
+6. Now navigate to Appearance -> Widgets and add the Foko widget to the Content sidebar just like any other widgets
 
-7. click the get access token link to email for an Access Token if you do not already have one
-	Note: you will have to provide your company name and user email for your wordpress admin.
+7. Expand the newly added widget to open the config page
 
-8. Make any configurations you want and enjoy your photofeeds
+8. click the "Get Access Token" link to send an email request for your Access Token if you do not already have one. You will need to provide your company name and the name of the widget that you are trying to use. (e.g. photofeed)
+
+9. Modify the configurations:
+- Title: You can enter the title of the widget here, will leave the title blank if left empty.
+
+- Description: Enter any custom text input, it will be displayed just below the title and before the photos.
+
+- Access Token: enter your obtained Access Token here otehrwise no photos will be displayed.
+
+- # of photos to be displayed: enter a number between 1 to 40, this specifies the number of photos to be displayed by the widget. The default value is 20 if you leave it empty.
+
+- hashtags: if you want to display photos for a specific hashtag, please enter it here with the format: #hashtag. Note: only one value is supported for now.
+
+- user email: if you want to display photos from a specific user, please enter his/her foko email here.
+
+Note: if you enter both of the hashtag and email values, the widget will try to find photos that satisfy both constraints and will not display any photos if one of them does not return any results.
+
+Note 2: if you leave both of the fields blank, the widget will display the most recent company photofeeds by default.
