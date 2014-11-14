@@ -89,6 +89,7 @@
 }
 
 .foko_item{
+	float: left;
 	width: 140px;
 	height: auto;
 	margin-top: 5px;
@@ -97,6 +98,7 @@
 }
 
 .photo_wrapper{
+	height: 1000px;
 	overflow: hidden;
 	text-align: center;
 }
@@ -146,7 +148,7 @@
 }
 
 .photo-link-container img{
-	width: 700px;
+	width: auto;
 	height: auto;
 	max-height: 1072px;
 	vertical-align: middle;
@@ -175,7 +177,7 @@
 }
 .photo-link-container .full-description{
 	text-align: left;
-	width: 700px;
+	width: 800px;
 	height: auto;
 	padding-top: 10px;
 	margin-left: auto;

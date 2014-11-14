@@ -19,6 +19,10 @@ function add_javascript(){
 	if (!wp_script_is('jquery', 'enqueued')){
 		wp_enqueue_script( 'jquery' );
 	}
+	wp_register_script( 'isotope', plugins_url('isotope.pkgd.min.js', __FILE__) );
+	wp_register_script( 'imagesloaded', plugins_url('imagesloaded.pkgd.min.js', __FILE__) );
+	wp_enqueue_script( 'isotope' );
+	wp_enqueue_script( 'imagesloaded' );
 }
 
 function add_stylesheet(){
@@ -68,18 +72,12 @@ class wp_foko_widget extends WP_Widget {
 		if ( $atoken ){
 			if ($user_email && !$hashtag){
 				$displayData = $this->scrape_foko($atoken, $displayNum, $user_email, null);
-				echo $user_email;
-				echo 'has email';
 			}
 			else if (!$user_email && $hashtag){
 				$displayData = $this->scrape_foko($atoken, $displayNum, NULL, $hashtag);
-				echo $user_email;
-				echo 'no email';
 			}
 			else if ($user_email && $hashtag){
 				$displayData = $this->scrape_foko($atoken, $displayNum, $user_email, $hashtag);
-				echo $user_email;
-				echo $user_email;
 			}
 			else{
 				$displayData = $this->scrape_foko($atoken, $displayNum, NULL, NULL);
@@ -92,9 +90,9 @@ class wp_foko_widget extends WP_Widget {
 			if ($displayData == null){
 				echo 'No data was found according to your input information, please verify the provided information was correct';
 			}else{
-				echo '<div class="photo_wrapper">';
+				echo '<div class="photo_wrapper" id="photo_wrapper">';
 
-				for ($i = 0; $i < intval($displayNum); $i++){
+				for ($i = 0; $i < intval($displayData[5]); $i++){
 					echo '<div class="foko_item">';
 					echo '<div class="view third-effect">';			
 					echo '<div class="mask"><span class="center_helper"></span>';
@@ -142,7 +140,7 @@ class wp_foko_widget extends WP_Widget {
 		<!-- Access Token: Text Input-->
 		<p>
 			<div for="<?php echo $this->get_field_id( 'atoken' ); ?>"><?php _e('Access Token:', 'example'); ?></div>
-			<div for="<?php echo $this->get_field_id( 'atoken' ); ?>"><?php _e('Please use the following link to obtain an Access Token if you don&apos;t already have one: ', 'example'); ?><a class="access_token_link" href="#">Link</a></div>
+			<div for="<?php echo $this->get_field_id( 'atoken' ); ?>"><?php _e('Please use the following link to obtain an Access Token if you don&apos;t already have one: ', 'example'); ?><a class="access_token_link" href="mailto:api@foko.co">Get Access Token</a></div>
 			<input id="<?php echo $this->get_field_id( 'atoken' ); ?>" name="<?php echo $this->get_field_name( 'atoken' ); ?>" value="<?php echo $instance['atoken']; ?>" style="width:100%;" />
 		</p>
 
@@ -212,8 +210,7 @@ class wp_foko_widget extends WP_Widget {
 		if ($photoJSON == null){
 			$data = NULL;
 		}else{
-
-			for ($i=0; $i<intval($displayNum); $i++){
+			for ($i=0; $i<count($photoJSON); $i++){
 				array_push($smallImgURL, $photoJSON[$i]["smallImage"].'&access_token='.$atoken);
 				array_push($largeImgURL, $photoJSON[$i]["largeImage"].'&access_token='.$atoken);
 				array_push($numLikes, $photoJSON[$i]['likeCount']);
@@ -229,7 +226,7 @@ class wp_foko_widget extends WP_Widget {
 
 				array_push($fullDescription, $photoJSON[$i]['description']);	
 			}
-			$data = array($smallImgURL, $largeImgURL, $numLikes, $description, $fullDescription);
+			$data = array($smallImgURL, $largeImgURL, $numLikes, $description, $fullDescription, count($photoJSON));
 		}
 		return $data;
 

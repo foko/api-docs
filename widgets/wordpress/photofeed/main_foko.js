@@ -1,6 +1,12 @@
 $ = jQuery.noConflict();
 
 $(document).ready(function() {
+    var $container = $('#photo_wrapper').imagesLoaded(function() {
+        $container.isotope({
+            itemSelector: '.foko_item',
+            layoutMode: 'masonry',
+        });
+    });
 
     $('body').prepend('<div class="image-link-overlay" id="image-link-overlay"><span class="center_helper"></span>');
     $('.image-link-overlay').append('<div class="photo-link-wrapper">' +
@@ -20,6 +26,7 @@ $(document).ready(function() {
         var tmpImg = new Image();
         tmpImg.src = phpData[1][imageIndex];
         tmpImg.onload = function() {
+
             $('.full-description').replaceWith('<div class="full-description"><p>' + phpData[4][imageIndex] + '<p/></div>');
         }
     });
