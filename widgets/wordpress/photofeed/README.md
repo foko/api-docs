@@ -27,7 +27,7 @@ Installtion Steps:
 
 - Access Token: enter your obtained Access Token here otehrwise no photos will be displayed.
 
-- # of photos to be displayed: enter a number between 1 to 40, this specifies the number of photos to be displayed by the widget. The default value is 20 if you leave it empty.
+- Number of photos to be displayed: enter a number between 1 to 40, this specifies the number of photos to be displayed by the widget. The default value is 20 if you leave it empty.
 
 - hashtags: if you want to display photos for a specific hashtag, please enter it here with the format: #hashtag. Note: only one value is supported for now.
 
