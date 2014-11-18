@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Foko Widget
-Description: An awesome Foko widget
+Plugin Name: Foko  PhotoFeed Wordpress Widget
+Description: An wordpress widget to display your company's photo feeds
 Version: 0.1
-Author: Harry Luo
-Author URI: http://codeforthepeople.com
+Author: Foko Inc.
+Author URI: http://www.foko.co
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -29,7 +29,7 @@ function add_stylesheet(){
 	wp_register_style( 'foko_style', plugins_url('foko_style.css', __FILE__) );
     wp_enqueue_style( 'foko_style' );
     if (!wp_style_is('font-awesome', 'enqueued')){
-		wp_enqueue_style( 'font-awesome', 'http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' );
+		wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' );
 	}    
 }
 
@@ -85,7 +85,6 @@ class wp_foko_widget extends WP_Widget {
 
 			wp_localize_script( 'main_foko', 'passedData', $displayData);
 			wp_enqueue_script( 'main_foko');
-			$this->debug_to_console($displayData);
 
 			if ($displayData == null){
 				echo 'No data was found according to your input information, please verify the provided information was correct';
@@ -96,7 +95,7 @@ class wp_foko_widget extends WP_Widget {
 					echo '<div class="foko_item">';
 					echo '<div class="view third-effect">';			
 					echo '<div class="mask"><span class="center_helper"></span>';
-					echo '<span class="info"><a class="photo-link" href="#" alt="'.$i.'">';
+					echo '<span class="info"><a class="photo-link" alt="'.$i.'">';
 					echo '<i class="fa fa-search fa-lg" id="foko-search-icon"></i></a></span></div>';
 					echo '<img src="'.$displayData[0][$i].'"/>';
 					echo '</div>';
@@ -179,54 +178,78 @@ class wp_foko_widget extends WP_Widget {
 		return $instance;
 	}
 
+	function get_indices($haystack, $needle){
+		$returns = array();
+		$position = 0;
+		while(strpos($haystack, $needle, $position) > -1){
+			$index = strpos($haystack, $needle, $position);
+			$returns[] = $index;
+			$position = $index + strlen($needle);
+		}
+		return $returns;
+	}
+
 	function scrape_foko($atoken, $displayNum, $email, $hashtag) {
+		$encodedEmail = urlencode($email);
+		$encodedHashtag = urlencode($hashtag);
+		$baseURL = 'https://cloud.foko.co/api/v1/';
 		if ($email != NULL && $hashtag == NUll){
-			$encodedEmail = urlencode($email);
-			$photoData = wp_remote_get('https://harry-dev.parseapp.com/api/v1/photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 		else if ($email == NULL && $hashtag != NULL){
-			$encodedHashtag = urlencode($hashtag);
-			$photoData = wp_remote_get('https://harry-dev.parseapp.com/api/v1/photofeeds?access_token='.$atoken.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 		else if ($email != NULL && $hashtag != NULL){
-			$encodedEmail = urlencode($email);
-			$encodedHashtag = urlencode($hashtag);
-			$photoData = wp_remote_get('https://harry-dev.parseapp.com/api/v1/photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 		else{
-			$photoData = wp_remote_get('https://harry-dev.parseapp.com/api/v1/photofeeds?access_token='.$atoken.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 
 		$photoJSON = json_decode($photoData['body'], true);
 		
 		$this->debug_to_console($photoJSON);
 
-		$smallImgURL = array();
+		$mediumImgURL = array();
 		$largeImgURL = array();
 		$numLikes = array();
 		$description = array();
 		$fullDescription = array();
+		$leftIndex = array();
+		$rightIndex = array();
+		$correctedDescription = "";
 
 		if ($photoJSON == null){
 			$data = NULL;
 		}else{
 			for ($i=0; $i<count($photoJSON); $i++){
-				array_push($smallImgURL, $photoJSON[$i]["smallImage"].'&access_token='.$atoken);
+				array_push($mediumImgURL, $photoJSON[$i]["mediumImage"].'&access_token='.$atoken);
 				array_push($largeImgURL, $photoJSON[$i]["largeImage"].'&access_token='.$atoken);
 				array_push($numLikes, $photoJSON[$i]['likeCount']);
-				if ($photoJSON[$i]['description']){
-					if (strlen($photoJSON[$i]['description'])>17){
-						array_push($description, substr($photoJSON[$i]['description'], 0, 14)." ...");
+				if ($photoJSON[$i]['description'] ){
+					if (strpos(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars("<span")) > -1){
+						$leftIndex = $this->get_indices(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars("<"));
+						$rightIndex = $this->get_indices(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars(">"));
+						for ($j = count($leftIndex) - 1; $j > 0; ){
+							$correctedDescription = substr_replace(htmlspecialchars($photoJSON[$i]['description']), '', $leftIndex[$j], ($rightIndex[$j] - $leftIndex[$j] + strlen(htmlspecialchars(">"))));
+							$correctedDescription = substr_replace($correctedDescription, htmlspecialchars("@"), $leftIndex[$j-1], ($rightIndex[$j-1] - $leftIndex[$j-1] + strlen(htmlspecialchars(">"))));
+							$j = $j-2;
+						}
 					}else{
-						array_push($description, $photoJSON[$i]['description']);
+						$correctedDescription = $photoJSON[$i]['description'];
+					}
+
+					if (strlen($correctedDescription)>17){
+						array_push($description, substr($correctedDescription, 0, 14)." ...");
+					}else{
+						array_push($description, $correctedDescription);
 					}
 				}else{
 					array_push($description, "no comments...");
 				}
-
 				array_push($fullDescription, $photoJSON[$i]['description']);	
 			}
-			$data = array($smallImgURL, $largeImgURL, $numLikes, $description, $fullDescription, count($photoJSON));
+			$data = array($mediumImgURL, $largeImgURL, $numLikes, $description, $fullDescription, count($photoJSON));
 		}
 		return $data;
 

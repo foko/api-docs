@@ -150,7 +150,8 @@
 .photo-link-container img{
 	width: auto;
 	height: auto;
-	max-height: 1072px;
+	max-height: 900px;
+	max-width: 800px;
 	vertical-align: middle;
 }
 .center_helper {
@@ -192,7 +193,11 @@
 	position:relative;
 	color: white;
 }
-
+/*@media (max-height: 1100px){
+	.photo-link-container img{
+		height: 700px;
+	}
+}*/
 @media (max-width: 900px){
 	.photo-link-container{
 		background-color: transparent;

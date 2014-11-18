@@ -18,9 +18,9 @@ $(document).ready(function() {
 
     var phpData = passedData;
 
-    $(".photo-link").click(function() {
+    $(".mask").click(function() {
         $(".image-link-overlay").toggle();
-        var imageIndex = $(this).attr('alt');
+        var imageIndex = $(this).find("a").attr('alt');
         $('#popupImage').replaceWith('<img id="popupImage" src="' + phpData[1][imageIndex] + '" alt="' + imageIndex + '">');
         $('.full-description').replaceWith('<div class="full-description"><p><p/></div>');
         var tmpImg = new Image();
