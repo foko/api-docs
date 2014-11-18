@@ -21,6 +21,8 @@ api.foko.co</a>. In the email please provide your company name and the name of t
 4. Login to wordpress, navigate to Admin page -> Plugins
 
 5. Activate Foko Widget from the list of installed plugins
+  
+![readme screenshot 1](https://files.foko.co/Foko%20PhotoFeed%20Wordpress%20Widget/Readme%20Pictures/Foko%20Widget%20Readme%201.png)
 
 6. Now navigate to Appearance -> Widgets and add the Foko widget to the Content sidebar just like any other widgets
 
@@ -44,3 +46,5 @@ api.foko.co</a>. In the email please provide your company name and the name of t
   Note: if you enter both of the hashtag and email values, the widget will try to find photos that satisfy both constraints.
   
   Note 2: if you leave both of the fields blank, the widget will display the most recent company photo feeds by default.
+
+![readme screenshot 2](https://files.foko.co/Foko%20PhotoFeed%20Wordpress%20Widget/Readme%20Pictures/Foko%20Widget%20Readme%202.png)
