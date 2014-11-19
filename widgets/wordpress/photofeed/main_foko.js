@@ -1,11 +1,18 @@
 $ = jQuery.noConflict();
 
 $(document).ready(function() {
-    var $container = $('#photo_wrapper').imagesLoaded(function() {
-        $container.isotope({
-            itemSelector: '.foko_item',
-            layoutMode: 'masonry',
+    var phpData = passedData;
+
+    var $container = $('#photo_wrapper').masonry();
+    $('#photo_wrapper').hide();
+    $('#loading').html('<span><i class="fa fa-spinner fa-spin fa-4x" id="foko_photo_wrapper_spinner"></i><p>Loading your photo feeds...</p></span>');
+    $container.imagesLoaded('always', function(instance) {
+        $('#loading').remove();
+        $('#photo_wrapper').show();
+        $container.masonry({
+            itemSelector: '.foko_item'
         });
+
     });
 
     $('body').prepend('<div class="image-link-overlay" id="image-link-overlay"><span class="center_helper"></span>');
@@ -16,7 +23,7 @@ $(document).ready(function() {
         '<div class="next"><a id="foko-next-link" href="#"><i class="fa fa-chevron-right fa-2x" id="foko-changePic-icon"></i></a></div>' +
         '<div class="full-description"><p><p/></div></div></div></div>');
 
-    var phpData = passedData;
+
 
     $(".mask").click(function() {
         $(".image-link-overlay").toggle();

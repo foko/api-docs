@@ -31,20 +31,23 @@ api.foko.co</a>. In the email please provide your company name and the name of t
 8. click the "Get Access Token" link to send an email request for your Access Token if you do not already have one. You will need to provide your company name and the name of the widget that you are trying to use. (e.g. photofeed)
 
 9. Modify the configurations:
-  - Title: You can enter the title of the widget here, will leave the title blank if left empty.
-  
+
+  - Title: You can enter the title of the widget here, or leave the title blank and it will be left empty.
+
   - Description: Enter any custom text input, it will be displayed just below the title and before the photos.
   
   - Access Token: enter your obtained Access Token here otehrwise no photos will be displayed.
   
   - Number of photos to be displayed: enter a number between 1 to 40, this specifies the number of photos to be displayed by the widget. The default value is 20 if you leave it empty.
   
-  - hashtags: if you want to display photos for a specific hashtag, please enter it here with the format: #hashtag. Note: only one value is supported for now.
+  - This widget by default displays the most recent photos from across your company. You can alternately display by:
   
-  - user email: if you want to display photos from a specific user, please enter his/her foko email here.
-  
-  Note: if you enter both of the hashtag and email values, the widget will try to find photos that satisfy both constraints.
-  
-  Note 2: if you leave both of the fields blank, the widget will display the most recent company photo feeds by default.
+    - hashtags: if you want to display photos for a specific hashtag, please enter it here with the format: #hashtag. Note: only one value is supported for now.
+
+    - user email: if you want to display photos from a specific user, please enter his/her foko email here.
+    
+    Note: if you enter both of the hashtag and email values, the widget will try to find photos that satisfy both constraints.
+    
+    Note 2: if you leave both of the fields blank, the widget will display the most recent company photo feeds by default.
 
   ![readme screenshot 2](https://files.foko.co/Foko%20PhotoFeed%20Wordpress%20Widget/Readme%20Pictures/Foko%20Widget%20Readme%202.png)

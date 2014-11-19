@@ -1,14 +1,13 @@
 <?php
 /*
-Plugin Name: Foko  PhotoFeed Wordpress Widget
-Description: An wordpress widget to display your company's photo feeds
+Plugin Name: Foko PhotoFeed Wordpress Widget
+Description: A widget that displays your company's photo feeds from Foko
 Version: 0.1
 Author: Foko Inc.
 Author URI: http://www.foko.co
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
-$tmp="hello";
 
 add_action('widgets_init', 'foko_widget');
 add_action( 'wp_enqueue_scripts', 'add_stylesheet' );
@@ -19,9 +18,9 @@ function add_javascript(){
 	if (!wp_script_is('jquery', 'enqueued')){
 		wp_enqueue_script( 'jquery' );
 	}
-	wp_register_script( 'isotope', plugins_url('isotope.pkgd.min.js', __FILE__) );
+	wp_register_script( 'masonry', plugins_url('masonry.pkgd.min.js', __FILE__) );
 	wp_register_script( 'imagesloaded', plugins_url('imagesloaded.pkgd.min.js', __FILE__) );
-	wp_enqueue_script( 'isotope' );
+	wp_enqueue_script( 'masonry' );
 	wp_enqueue_script( 'imagesloaded' );
 }
 
@@ -89,6 +88,9 @@ class wp_foko_widget extends WP_Widget {
 			if ($displayData == null){
 				echo 'No data was found according to your input information, please verify the provided information was correct';
 			}else{
+
+				echo '<div class="outer_photo_wrapper" id="outer_photo_wrapper">';
+				echo '<div id="loading"></div>';
 				echo '<div class="photo_wrapper" id="photo_wrapper">';
 
 				for ($i = 0; $i < intval($displayData[5]); $i++){
@@ -101,14 +103,14 @@ class wp_foko_widget extends WP_Widget {
 					echo '</div>';
 					echo '<div class="photo_info">';
 					echo '<p class="photo_description">';
-					echo '<span class="caption">'.$displayData[3][$i].'</span></p>';
+					echo '<span title="'.$displayData[4][$i].'"class="caption">'.$displayData[3][$i].'</span></p>';
 					echo '<div class="meta_info">';
 					echo '<span class="likes" style="font-size: 11px">';
 					echo '<i class="fa fa-heart" style="color:rgb(221, 148, 148)"></i>  '.$displayData[2][$i].'</span>';
 					echo '</div></div></div>';
 				}
 
-				echo '</div>';
+				echo '</div></div>';
 			}
 		}else{
 			echo 'Please provide your Access Token.';
@@ -144,22 +146,26 @@ class wp_foko_widget extends WP_Widget {
 		</p>
 
 		<p>
-			<div for="<?php echo $this->get_field_id( 'display_method' ); ?>"><?php _e('This widget will display the 20 most recent photos from your company&apos;s photo feeds by default. You can choose to display photos from specific users or hashtags by entering the corresponding infromation in the text box below.', 'example'); ?></div> 
+			<div for="<?php echo $this->get_field_id( 'configure_display' ); ?>"><?php _e('Configure your display:', 'example'); ?></div> 
 		</p>
 
 		<!-- Number of Photos: Text Input -->
 		<p>
-			<div for="<?php echo $this->get_field_id( 'displayNum' ); ?>"><?php _e('How many photos do you want to display:', 'example'); ?></div>
+			<div for="<?php echo $this->get_field_id( 'displayNum' ); ?>"><?php _e('How many photos do you want to display (maximum 40, default is 20):', 'example'); ?></div>
 			<input id="<?php echo $this->get_field_id( 'displayNum' ); ?>" name="<?php echo $this->get_field_name( 'displayNum' ); ?>" value="<?php echo $instance['displayNum']; ?>" style="width:100%;" />
 		</p>
 
+		<p>
+			<div style="font-weight:900;" for="<?php echo $this->get_field_id( 'default_display' ); ?>"><?php _e('This widget by default displays the most recent photos from across your company.', 'example'); ?></div> 
+		</p>
+
 		<p class="hashtag_input">
-			<div for="<?php echo $this->get_field_id( 'hashtag_input' ); ?>"><?php _e('Please enter the hashtag: e.g #hashtag', 'example'); ?></div>
+			<div for="<?php echo $this->get_field_id( 'hashtag_input' ); ?>"><?php _e('If you do not want to show a standard company feed, you can enter a hashtag (e.g #hashtag) to instead show a feed of that tag:', 'example'); ?></div>
 			<input id="<?php echo $this->get_field_id( 'hashtag_input' ); ?>" name="<?php echo $this->get_field_name( 'hashtag_input' ); ?>" value="<?php echo $instance['hashtag_input']; ?>" style="width:100%;" />
 		</p>
 
 		<p class="user_input">
-			<div for="<?php echo $this->get_field_id( 'user_input' ); ?>"><?php _e('Please enter the company email of user:', 'example'); ?></div>
+			<div for="<?php echo $this->get_field_id( 'user_input' ); ?>"><?php _e('If you do not want to show a standard company feed, you can enter the email address of a certain user to instead show a feed from that user:', 'example'); ?></div>
 			<input id="<?php echo $this->get_field_id( 'user_input' ); ?>" name="<?php echo $this->get_field_name( 'user_input' ); ?>" value="<?php echo $instance['user_input']; ?>" style="width:100%;" />
 		</p>
 
@@ -189,21 +195,22 @@ class wp_foko_widget extends WP_Widget {
 		return $returns;
 	}
 
+
 	function scrape_foko($atoken, $displayNum, $email, $hashtag) {
 		$encodedEmail = urlencode($email);
 		$encodedHashtag = urlencode($hashtag);
 		$baseURL = 'https://cloud.foko.co/api/v1/';
 		if ($email != NULL && $hashtag == NUll){
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
 		}
 		else if ($email == NULL && $hashtag != NULL){
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
 		}
 		else if ($email != NULL && $hashtag != NULL){
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
 		}
 		else{
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&limit='.intval($displayNum).'&descending=updatedAt');
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
 		}
 
 		$photoJSON = json_decode($photoData['body'], true);
@@ -226,28 +233,25 @@ class wp_foko_widget extends WP_Widget {
 				array_push($mediumImgURL, $photoJSON[$i]["mediumImage"].'&access_token='.$atoken);
 				array_push($largeImgURL, $photoJSON[$i]["largeImage"].'&access_token='.$atoken);
 				array_push($numLikes, $photoJSON[$i]['likeCount']);
-				if ($photoJSON[$i]['description'] ){
-					if (strpos(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars("<span")) > -1){
-						$leftIndex = $this->get_indices(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars("<"));
-						$rightIndex = $this->get_indices(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars(">"));
-						for ($j = count($leftIndex) - 1; $j > 0; ){
-							$correctedDescription = substr_replace(htmlspecialchars($photoJSON[$i]['description']), '', $leftIndex[$j], ($rightIndex[$j] - $leftIndex[$j] + strlen(htmlspecialchars(">"))));
-							$correctedDescription = substr_replace($correctedDescription, htmlspecialchars("@"), $leftIndex[$j-1], ($rightIndex[$j-1] - $leftIndex[$j-1] + strlen(htmlspecialchars(">"))));
-							$j = $j-2;
-						}
-					}else{
-						$correctedDescription = $photoJSON[$i]['description'];
-					}
-
-					if (strlen($correctedDescription)>17){
-						array_push($description, substr($correctedDescription, 0, 14)." ...");
-					}else{
-						array_push($description, $correctedDescription);
+				if (strpos(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars("<span")) > -1){
+					$leftIndex = $this->get_indices(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars("<"));
+					$rightIndex = $this->get_indices(htmlspecialchars($photoJSON[$i]['description']), htmlspecialchars(">"));
+					for ($j = count($leftIndex) - 1; $j > 0; ){
+						$correctedDescription = substr_replace(htmlspecialchars($photoJSON[$i]['description']), '', $leftIndex[$j], ($rightIndex[$j] - $leftIndex[$j] + strlen(htmlspecialchars(">"))));
+						$correctedDescription = substr_replace($correctedDescription, htmlspecialchars("@"), $leftIndex[$j-1], ($rightIndex[$j-1] - $leftIndex[$j-1] + strlen(htmlspecialchars(">"))));
+						$j = $j-2;
 					}
 				}else{
-					array_push($description, "no comments...");
+					$correctedDescription = $photoJSON[$i]['description'];
 				}
-				array_push($fullDescription, $photoJSON[$i]['description']);	
+
+				if (strlen($correctedDescription)>17){
+					array_push($description, substr($correctedDescription, 0, 14)." ...");
+				}else{
+					array_push($description, $correctedDescription);
+				}
+	
+				array_push($fullDescription, $correctedDescription);	
 			}
 			$data = array($mediumImgURL, $largeImgURL, $numLikes, $description, $fullDescription, count($photoJSON));
 		}
