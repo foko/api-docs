@@ -1,7 +1,7 @@
 Foko PhotoFeed WordPress Widget
 -------------------------------
 
-**IMPORTANT:** You need to install a self hosted version of wordpress in order to install this plugin (e.g. use wordpress.org instead of wordpress.com).
+**IMPORTANT:** You need to install a self hosted version of wordpress in order to install this plugin (e.g. use wordpress.org instead of wordpress.com). Please update to the lates version of your browser in order to experience the full functionality of this widget.
 
 **Before you start:** 
 <p>
