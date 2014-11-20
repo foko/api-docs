@@ -1,7 +1,7 @@
 Foko PhotoFeed WordPress Widget
 -------------------------------
 
-**IMPORTANT:** You need to install a self hosted version of wordpress in order to install this plugin (e.g. use wordpress.org instead of wordpress.com). Please update to the lates version of your browser in order to experience the full functionality of this widget.
+**IMPORTANT:** You need to install a self hosted version of wordpress in order to install this plugin (e.g. use wordpress.org instead of wordpress.com). Please update to the latest version of your browser in order to experience the full functionality of this widget.
 
 **Before you start:** 
 <p>
@@ -24,7 +24,7 @@ api@foko.co</a>. In the email please provide your company name and the name of t
   
   ![readme screenshot 1](https://files.foko.co/Foko%20PhotoFeed%20Wordpress%20Widget/Readme%20Pictures/Foko%20Widget%20Readme%201.png)
 
-6. Now navigate to Appearance -> Widgets and add the Foko widget to the Content sidebar just like any other widgets
+6. Now navigate to Appearance -> Widgets and add the Foko widget to the Content sidebar just like any other widgets (This widget is designed specifically for the sidebar, If you want to place it to other widget areas please adjust the space accordingly to allow enough room for the widget)
 
 7. Expand the newly added widget to open the config page
 
