@@ -6,8 +6,8 @@ Foko PhotoFeed WordPress Widget
 **Before you start:** 
 <p>
 If you do not already have an Access Token for your company, please send an email to the following link to obtain one:
-<a href="mailto:api.foko.co?Subject=Request%20Access%20Token" target="_top">
-api.foko.co</a>. In the email please provide your company name and the name of the widget that you are trying to use.
+<a href="mailto:api@foko.co?Subject=Request%20Access%20Token" target="_top">
+api@foko.co</a>. In the email please provide your company name and the name of the widget that you are trying to use.
 </p>
 
 **Installtion Steps:**
