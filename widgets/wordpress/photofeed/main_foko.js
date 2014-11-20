@@ -24,20 +24,6 @@ $(document).ready(function() {
         '<div class="full-description"><p><p/></div></div></div></div>');
 
 
-
-    // $(".mask").click(function() {
-    //     $(".image-link-overlay").toggle();
-    //     var imageIndex = $(this).find("a").attr('alt');
-    //     $('#popupImage').replaceWith('<img id="popupImage" src="' + phpData[1][imageIndex] + '" alt="' + imageIndex + '">');
-    //     $('.full-description').replaceWith('<div class="full-description"><p><p/></div>');
-    //     var tmpImg = new Image();
-    //     tmpImg.src = phpData[1][imageIndex];
-    //     tmpImg.onload = function() {
-
-    //         $('.full-description').replaceWith('<div class="full-description"><p>' + phpData[4][imageIndex] + '<p/></div>');
-    //     }
-    // });
-
     $(".third-effect").click(function() {
         if (!($.browser.msie && $.browser.version < 9.0)) {
             $(this).parent().removeAttr('href');

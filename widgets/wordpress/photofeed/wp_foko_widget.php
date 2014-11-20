@@ -2,7 +2,7 @@
 /*
 Plugin Name: Foko PhotoFeed Wordpress Widget
 Description: A widget that displays your company's photo feeds from Foko
-Version: 0.1
+Version: 1.0
 Author: Foko Inc.
 Author URI: http://www.foko.co
 License: GPLv2 or later
@@ -206,16 +206,16 @@ class wp_foko_widget extends WP_Widget {
 		$encodedHashtag = urlencode($hashtag);
 		$baseURL = 'https://cloud.foko.co/api/v1/';
 		if ($email != NULL && $hashtag == NUll){
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 		else if ($email == NULL && $hashtag != NULL){
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 		else if ($email != NULL && $hashtag != NULL){
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&email='.$encodedEmail.'&hashtags='.$encodedHashtag.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 		else{
-			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&limit='.intval($displayNum).'&descending=updatedAt', array( 'timeout' => 120));
+			$photoData = wp_remote_get($baseURL.'photofeeds?access_token='.$atoken.'&limit='.intval($displayNum).'&descending=updatedAt');
 		}
 
 		$photoJSON = json_decode($photoData['body'], true);
