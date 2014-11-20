@@ -25,9 +25,27 @@ $(document).ready(function() {
 
 
 
-    $(".mask").click(function() {
+    // $(".mask").click(function() {
+    //     $(".image-link-overlay").toggle();
+    //     var imageIndex = $(this).find("a").attr('alt');
+    //     $('#popupImage').replaceWith('<img id="popupImage" src="' + phpData[1][imageIndex] + '" alt="' + imageIndex + '">');
+    //     $('.full-description').replaceWith('<div class="full-description"><p><p/></div>');
+    //     var tmpImg = new Image();
+    //     tmpImg.src = phpData[1][imageIndex];
+    //     tmpImg.onload = function() {
+
+    //         $('.full-description').replaceWith('<div class="full-description"><p>' + phpData[4][imageIndex] + '<p/></div>');
+    //     }
+    // });
+
+    $(".third-effect").click(function() {
+        if (!($.browser.msie && $.browser.version < 9.0)) {
+            $(this).parent().removeAttr('href');
+            $(this).parent().removeAttr('target');
+        }
+
         $(".image-link-overlay").toggle();
-        var imageIndex = $(this).find("a").attr('alt');
+        var imageIndex = $(this).find('img').attr('alt');
         $('#popupImage').replaceWith('<img id="popupImage" src="' + phpData[1][imageIndex] + '" alt="' + imageIndex + '">');
         $('.full-description').replaceWith('<div class="full-description"><p><p/></div>');
         var tmpImg = new Image();
@@ -37,6 +55,7 @@ $(document).ready(function() {
             $('.full-description').replaceWith('<div class="full-description"><p>' + phpData[4][imageIndex] + '<p/></div>');
         }
     });
+
     $(".image-link-overlay").click(function() {
         $(".image-link-overlay").toggle();
     }).children().click(function(e) {

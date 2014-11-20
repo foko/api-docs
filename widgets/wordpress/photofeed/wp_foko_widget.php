@@ -18,9 +18,13 @@ function add_javascript(){
 	if (!wp_script_is('jquery', 'enqueued')){
 		wp_enqueue_script( 'jquery' );
 	}
-	wp_register_script( 'masonry', plugins_url('masonry.pkgd.min.js', __FILE__) );
+	if (!wp_script_is('jquery-masonry', 'enqueued')){
+		wp_enqueue_script( 'jquery-masonry' );		
+	}
+	if (!wp_script_is('jquery-migrate', 'enqueued')){
+		wp_enqueue_script( 'jquery-migrate' );		
+	}
 	wp_register_script( 'imagesloaded', plugins_url('imagesloaded.pkgd.min.js', __FILE__) );
-	wp_enqueue_script( 'masonry' );
 	wp_enqueue_script( 'imagesloaded' );
 }
 
@@ -95,12 +99,13 @@ class wp_foko_widget extends WP_Widget {
 
 				for ($i = 0; $i < intval($displayData[5]); $i++){
 					echo '<div class="foko_item">';
+					echo '<a class="foko_item_link" href="'.$displayData[1][$i].'" target="_blank">';
 					echo '<div class="view third-effect">';			
 					echo '<div class="mask"><span class="center_helper"></span>';
-					echo '<span class="info"><a class="photo-link" alt="'.$i.'">';
-					echo '<i class="fa fa-search fa-lg" id="foko-search-icon"></i></a></span></div>';
-					echo '<img src="'.$displayData[0][$i].'"/>';
-					echo '</div>';
+					echo '<span class="info">';
+					echo '<i class="fa fa-search fa-lg" id="foko-search-icon"></i></span></div>';
+					echo '<img id="image_link" src="'.$displayData[0][$i].'" alt="'.$i.'">';
+					echo '</div></a>';
 					echo '<div class="photo_info">';
 					echo '<p class="photo_description">';
 					echo '<span title="'.$displayData[4][$i].'"class="caption">'.$displayData[3][$i].'</span></p>';
@@ -119,9 +124,9 @@ class wp_foko_widget extends WP_Widget {
 		echo $after_widget;
 	}
 
-	function debug_to_console($data) {
-			echo("<script>console.log(".json_encode($data).");</script>");
-	}
+	// function debug_to_console($data) {
+	// 		echo("<script>console.log(".json_encode($data).");</script>");
+	// }
 
 	function form($instance) {
 		?>
@@ -215,7 +220,6 @@ class wp_foko_widget extends WP_Widget {
 
 		$photoJSON = json_decode($photoData['body'], true);
 		
-		$this->debug_to_console($photoJSON);
 
 		$mediumImgURL = array();
 		$largeImgURL = array();
