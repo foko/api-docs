@@ -58,6 +58,8 @@ class wp_foko_widget extends WP_Widget {
 		$user_email = $instance['user_input'];
 		$hashtag = $instance['hashtag_input'];
 		$description = $instance['description'];
+		$showLikes = $instance['show_likes'];
+		$showDescription = $instance['show_description'];
 
 		if (!$displayNum)
 			$displayNum = 20;
@@ -107,12 +109,16 @@ class wp_foko_widget extends WP_Widget {
 					echo '<img id="image_link" src="'.$displayData[0][$i].'" alt="'.$i.'">';
 					echo '</div></a>';
 					echo '<div class="photo_info">';
-					echo '<p class="photo_description">';
-					echo '<span title="'.$displayData[4][$i].'"class="caption">'.$displayData[3][$i].'</span></p>';
-					echo '<div class="meta_info">';
-					echo '<span class="likes" style="font-size: 11px">';
-					echo '<i class="fa fa-heart" style="color:rgb(221, 148, 148)"></i>  '.$displayData[2][$i].'</span>';
-					echo '</div></div></div>';
+					if ($showDescription){
+						echo '<p class="photo_description">';
+						echo '<span title="'.$displayData[4][$i].'"class="caption">'.$displayData[3][$i].'</span></p>';
+					}
+					if ($showLikes){
+						echo '<div class="meta_info">';
+						echo '<span class="likes" style="font-size: 11px">';
+						echo '<i class="fa fa-heart" style="color:rgb(221, 148, 148)"></i>  '.$displayData[2][$i].'</span></div>';
+					}
+					echo '</div></div>';
 				}
 
 				echo '</div></div>';
@@ -174,6 +180,16 @@ class wp_foko_widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id( 'user_input' ); ?>" name="<?php echo $this->get_field_name( 'user_input' ); ?>" value="<?php echo $instance['user_input']; ?>" style="width:100%;" />
 		</p>
 
+		<p>
+			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['show_likes'], true ); ?> id="<?php echo $this->get_field_id( 'show_likes' ); ?>" name="<?php echo $this->get_field_name( 'show_likes' ); ?>" /> 
+			<label for="<?php echo $this->get_field_id( 'show_likes' ); ?>"><?php _e('Show the number of likes', 'example'); ?></label>
+		</p>
+
+		<p>
+			<input class="checkbox" type="checkbox" <?php checked( (bool) $instance['show_description'], true ); ?> id="<?php echo $this->get_field_id( 'show_description' ); ?>" name="<?php echo $this->get_field_name( 'show_description' ); ?>" /> 
+			<label for="<?php echo $this->get_field_id( 'show_description' ); ?>"><?php _e('Show the description of photos', 'example'); ?></label>
+		</p>
+
 	<?php
 
 	}
@@ -186,6 +202,8 @@ class wp_foko_widget extends WP_Widget {
 		$instance['atoken'] = trim(strip_tags($new_instance['atoken']));
 		$instance['hashtag_input'] = trim(strip_tags($new_instance['hashtag_input']));
 		$instance['user_input'] = trim(strip_tags($new_instance['user_input']));
+		$instance['show_likes'] = $new_instance['show_likes'];
+		$instance['show_description'] = $new_instance['show_description'];
 		return $instance;
 	}
 
