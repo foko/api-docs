@@ -48,9 +48,13 @@ api@foko.co</a>. In the email please provide your company name and the name of t
     - hashtags: if you want to display photos for a specific hashtag, please enter it here with the format: #hashtag. Note: only one value is supported for now.
 
     - user email: if you want to display photos from a specific user, please enter his/her foko email here.
+
+  - Show the number of likes: check to show the number of likes for each photo.
+
+  - Show the description: check to display the description of each photo.
     
-    Note: if you enter both of the hashtag and email values, the widget will try to find photos that satisfy both constraints.
+  Note: if you enter both of the hashtag and email values, the widget will try to find photos that satisfy both constraints.
     
-    Note 2: if you leave both of the fields blank, the widget will display the most recent company photo feeds by default.
+  Note 2: if you leave both of the fields blank, the widget will display the most recent company photo feeds by default.
 
   ![readme screenshot 2](https://files.foko.co/Foko%20PhotoFeed%20Wordpress%20Widget/Readme%20Pictures/Foko%20Widget%20Readme%202.png)
