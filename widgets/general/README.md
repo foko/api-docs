@@ -32,7 +32,7 @@ For example this is the html markup for the above blog website:
 	    <iframe id="foko-widget" src="../foko-photofeed-widget/foko-widget.html" width="325px" height="340px" frameborder="0" scrolling="no" data-access-token="" data-number-photos="" data-user-email="" data-hashtag="" data-display-method="slide"></iframe>
 	</div>
 
-You can insert this snippet anywhere in your html page but keep in mind that this is an iframe, so you will have to adjust the dimensions of the deimensions manually to fit in your parent div.
+You can insert this snippet anywhere in your html page but keep in mind that this is an iframe, so you will have to adjust the dimensions of the iframe manually to fit in your parent div.
 
 Configuration parameters:
 - width: set the width of the widget in px.
