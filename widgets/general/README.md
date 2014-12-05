@@ -23,7 +23,7 @@ Slide Show:
 
 The slide show version is an iframe web widget, to use it, simply copy the following code to your html markup:
 
-        <iframe id="foko-widget" src="https://fokowidgets.parseapp.com/widgets/photofeed/foko-widget-slide.html?width=320&height=360&data-access-token=K&data-display-method=slide&data-number-photos=&data-user-email=&data-hashtag=" width="320px" height="360px" frameborder="0" scrolling="no"></iframe>
+        <iframe id="foko-widget" src="https://fokowidgets.parseapp.com/widgets/photofeed/foko-widget-slide.html?width=320&height=360&data-access-token=&data-display-method=slide&data-number-photos=&data-user-email=&data-hashtag=" width="320px" height="360px" frameborder="0" scrolling="no"></iframe>
  
 For example this is the html markup for the above blog website:
 
