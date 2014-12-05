@@ -64,7 +64,7 @@ Grid View:
 The gird view version is an embedded web widget, to use it please copy the following javascript code to your html markup where you want the widget to appear:
 Note: the javascript will append the widget to the parent div of where it is being placed.
 
-	<script type="text/javascript" src="https://fokowidgets.parseapp.com/widgets/photofeed/js/foko-widget-grid.js" id="foko-widget" data-width="" data-access-token="" data-display-method="" data-number-photos="" data-user-email="" data-hashtag="" data-display-method="grid" data-show-likes="false" data-show-description="false"></script>
+	<script type="text/javascript" src="https://fokowidgets.parseapp.com/widgets/photofeed/js/foko-widget-grid.js" id="foko-widget" data-width="" data-access-token="" data-number-photos="" data-user-email="" data-hashtag="" data-display-method="grid" data-show-likes="false" data-show-description="false"></script>
 
 Configuration parameters:
 
