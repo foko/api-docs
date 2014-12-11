@@ -29,13 +29,13 @@ Slide Show:
 
 The slide show version is an iframe web widget, to use it, simply copy the following code to your html markup:
 
-        <iframe id="foko-widget" src="https://fokowidgets.parseapp.com/widgets/photofeed/foko-widget-slide.html?width=320&height=360&data-access-token=&data-display-method=slide&data-number-photos=&data-user-email=&data-hashtag=" width="320px" height="360px" frameborder="0" scrolling="no"></iframe>
+        <iframe id="foko-widget" src="https://fokowidgets.parseapp.com/widgets/photofeed/foko-widget-slide.html?width=320&height=360&data-access-token=&data-display-method=slide&data-number-photos=&data-user-email=&data-hashtag=&auto-cycling=false" width="320px" height="360px" frameborder="0" scrolling="no"></iframe>
  
 For example this is the html markup for the above blog website:
 
 	<!-- Side Widget -->
 	<div class="sidebar">
-	    <iframe id="foko-widget" src="https://fokowidgets.parseapp.com/widgets/photofeed/foko-widget-slide.html?width=320&height=360&data-access-token=&data-display-method=slide&data-number-photos=&data-user-email=&data-hashtag=&data-show-likes=&data-show-description=" width="320px" height="360px" frameborder="0" scrolling="no"></iframe>
+	    <iframe id="foko-widget" src="https://fokowidgets.parseapp.com/widgets/photofeed/foko-widget-slide.html?width=320&height=360&data-access-token=&data-display-method=slide&data-number-photos=&data-user-email=&data-hashtag=&auto-cycling=false" width="320px" height="360px" frameborder="0" scrolling="no"></iframe>
 	</div>
 
 You can insert this snippet anywhere in your html page but keep in mind that this is an iframe, so you will have to adjust the dimensions of the iframe manually to fit in your parent div.
