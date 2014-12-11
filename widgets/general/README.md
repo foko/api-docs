@@ -13,6 +13,11 @@ If you do not already have an Access Token for your company, please send an emai
 api@foko.co</a>. In the email please provide your company name and that you want a key for the iframe/Embed Photo Feed Widget.
 </p>
 
+**Supported Browsers**
+IE users: The slide show version supports for IE 8, 9, 10, 11, grid view version only supports for IE 10 and above.
+
+Non IE users: The widget fully supports for Chrome, Firefox and Safari, however it is highly recommended to upgrade to the latest version of these browsers in order to achieve optimal experience.
+
 **How to use**
 
 There are two versions of this widget: the **Slide Show** and **Grid View**.
