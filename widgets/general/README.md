@@ -55,6 +55,8 @@ You can configure the widget by chaning the query strings, just enter the input 
 
 - data-number-photos: enter a number between 1 to 40, this specifies the number of photos to be displayed by the widget. The default value is 20 if you leave it empty.
 
+- auto-cycling: a boolean value, if set to true the slide show will automatically cycle through the photos.
+
 - This widget by default displays the most recent photos from across your company. You can alternately display by changing:
   
    - data-hashtag: if you want to display photos for a specific hashtag, please enter it here with the format: hashtag. Note: only one value is supported for now.
