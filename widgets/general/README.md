@@ -41,15 +41,15 @@ For example this is the html markup for the above blog website:
 You can insert this snippet anywhere in your html page but keep in mind that this is an iframe, so you will have to adjust the dimensions of the iframe manually to fit in your parent div.
 
 Configuration parameters:
-You can configure the widget by chaning the query strings, just enter the input valuse right after the "=" sign without any spaces.
+You can configure the widget by changing the query strings, just enter the input valuse right after the "=" sign without any spaces.
 
-- width (query string): set the width of the photo in px.
+- width (contained in the query string as part of the src): set the width of the photo in px.
 
-- width (iframe attribute): set the widthof the iframe in px.
+- width (iframe attribute, not part of the src): set the width of the iframe in px.
 
-- height (query string): set the max height of the photo in px.
+- height (contained in the query string as part of the src): set the max height of the photo in px.
 
-- height (iframe attribute): set the height of the iframe in px.
+- height (iframe attribute, not part of the src): set the height of the iframe in px.
 
 - data-access-token: enter your Access Token here, or no photos will be displayed.
 
@@ -93,3 +93,19 @@ Configuration parameters:
 
    - data-user-email: if you want to display photos from a specific user, please enter his/her foko email here.
 
+**Responsive Design**
+
+You can make the widget to be responsive with the screen size by adding extra CSS to your main page.
+
+For example:
+
+	@media (max-width: 1200px){
+	/*Make the grid view to resize to 1 column if the screen size is smaller than 1200px*/
+		#foko-widget-photo-wrapper{
+			width: 156px!important;
+		}
+	/*Resize the width of the iframe to be 250px when the screen size is smaller than 1200px*/
+		#foko-widget{
+			width: 250px;
+		}
+	}
