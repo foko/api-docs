@@ -1,1 +1,0 @@
-Foko Widget for WordPress
