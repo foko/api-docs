@@ -6,11 +6,13 @@
 GET https://api.foko.io/public/api/v0/posts/photos
 ```
 ### Query Paramters
-* access_token - please request the access_token by contacting Foko support
-* limit - the maximum number of results (records) to return.
-* skip - the specified number of returned records to skip, which is useful to paginate responses.  
-* descending - available values: "createdAt", "updatedAt", "likeCount"
-* ascending - avavilable values: "createdAt", "updatedAt", "likeCount"
+* **access_token** - please request a access token by contacting Foko support 'api@foko.co'
+* **limit** - the maximum number of results (records) to return. Default is 100.
+* **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
+* ordering paramters:
+  * **descending** - available values: "createdAt", "updatedAt", "likeCount"
+  * **ascending** - avavilable values: "createdAt", "updatedAt", "likeCount"
+  * if not specified, then by default, it's ordered by "createdAt" descending order, i.e., "descending=createdAt"
 
 *Examples*
 ```
