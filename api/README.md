@@ -13,11 +13,15 @@ GET https://api.foko.io/public/api/v0/posts/photos
   * **descending** - available values: "createdAt", "updatedAt", "likeCount"
   * **ascending** - avavilable values: "createdAt", "updatedAt", "likeCount"
   * if not specified, then by default, it's ordered by "createdAt" descending order, i.e., "descending=createdAt"
+* **email** - specify Foko user email address in order to retrieve only photos uploaded by this user
+* **hashtag** - spcify a hashtag in order to retrieve only photos having this hashtag
 
 *Examples*
 ```
 /public/api/v0/posts/photos?access_token=[token]&limit=50&descending=createdAt
 /public/api/v0/posts/photos?access_token=[token]&limit=50&skip=50&ascending=createdAt
+/public/api/v0/posts/photos?access_token=[token]&email=john@example.com&hashtag=vacation
+
 ```
 ### Response JSON
 The API will return an array of JSON object. For example:
