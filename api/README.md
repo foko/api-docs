@@ -7,6 +7,7 @@ GET https://api.foko.io/public/api/v0/posts
 ```
 ### Query Paramters
 * **access_token** - please request a access token by contacting Foko support 'api@foko.co'
+* **hashtag** - query posts with specific hashtag
 * **type** - currently, we support four types of posts: image, weblink, videoBroadcast and video. Specifying the type will only return that type of posts. If skipped, any type of posts will be returned.
 * **limit** - the maximum number of results (records) to return. Default is 100.
 * **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
@@ -17,7 +18,7 @@ GET https://api.foko.io/public/api/v0/posts
 
 *Examples*
 ```
-/public/api/v0/posts?access_token=[token]&limit=50&descending=createdAt
+/public/api/v0/posts?access_token=[token]&limit=50&hashtag=welcome&descending=createdAt
 /public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt
 /public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt&type=image
 ```
