@@ -10,6 +10,7 @@ GET https://api.foko.io/public/api/v0/posts
 * **hashtag** - query posts with specific hashtag
 * **hashtags** - query post with specific hashtags, delimited by coma
 * **type** - currently, we support four types of posts: image, weblink, videoBroadcast and video. Specifying the type will only return that type of posts. If skipped, any type of posts will be returned.
+* **include** - include additional data, currently, only 'owner' is supported. This will return poster data too.
 * **limit** - the maximum number of results (records) to return. Default is 100.
 * **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
 * ordering paramters:
@@ -22,6 +23,7 @@ GET https://api.foko.io/public/api/v0/posts
 /public/api/v0/posts?access_token=[token]&limit=50&hashtag=welcome&descending=createdAt
 /public/api/v0/posts?access_token=[token]&limit=50&hashtags=welcome,annualmeetings&skip=50&ascending=createdAt
 /public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt&type=image
+/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt&type=image&include=owner
 ```
 ### Sample Response JSON
 The API will return an array of JSON object. Note that, there could be additional meta data for specific type of posts. Here is a sample response:
@@ -61,7 +63,11 @@ The API will return an array of JSON object. Note that, there could be additiona
     "meta": {
       "url": "(url from aws s3 bucket)",
       "duration": 300 (in seconds)
-    }
+    },
+    "ownerFirstName": "John",
+    "ownerLastName": "Down",
+    "ownerProfileURL": "PROFILE_URL",
+    "ownerAvatarURL": "AVATAR_IMAGE_URL"
   }
 ]
 ```
