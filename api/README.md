@@ -10,7 +10,7 @@ GET https://api.foko.io/public/api/v0/posts
 * **hashtag** - query posts with specific hashtag
 * **hashtags** - query post with specific hashtags, delimited by coma
 * **include** - include additional data, currently, only 'owner' is supported. This will return poster data too.
-* **limit** - the maximum number of results (records) to return. Max is 100.
+* **limit** - the maximum number of results (records) to return. Default is 100, but max is 500. 
 * **type** - (DEPRECATED) By default, always return "image" type post, including individual photos in albums.
 * **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
 * specify time period
