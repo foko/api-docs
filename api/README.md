@@ -16,7 +16,7 @@ GET https://api.foko.io/public/api/v0/posts
 * **limit** - the maximum number of results (records) to return. Default is 100, but max is 500. 
 * **type** - (DEPRECATED) By default, always return "image" type post, including individual photos in albums.
 * **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
-* specify timestamp range for search "createdAt" or "touchedAt", specified by "ordering". For example, if ordering is "createdAt" (default), searching is against post creation time; if ordering is "touchedAt", searching is against "touchedAt" which records last commenting or liking on this post.
+* specify timestamp range for search "createdAt" or "touchedAt", specified by "ordering". For example, if ordering is "createdAt" (default), searching is against post creation time; if ordering is "touchedAt", searching is against "touchedAt" which records last commenting or liking timestamp on this post.
   * **from** - start time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z"
   * **to** - end time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z"
 * ordering paramters:
@@ -28,9 +28,9 @@ GET https://api.foko.io/public/api/v0/posts
 ```
 /public/api/v0/posts?access_token=[token]&limit=50&hashtag=welcome&descending=createdAt
 /public/api/v0/posts?access_token=[token]&limit=50&hashtags=welcome,annualmeetings&skip=50&ascending=createdAt
-/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt
-/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt&include=owner
-/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=createdAt&include=owner&from=2016-03-01&to=2016-03-15
+/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=touchedAt
+/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=touchedAt&include=owner,comment
+/public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=touchedAt&include=owner,comments,likes&from=2016-03-01&to=2016-03-15
 ```
 ### Sample Response JSON
 The API will return an array of JSON object. Note that, there could be additional meta data for specific type of posts. Here is a sample response:
