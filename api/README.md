@@ -38,7 +38,7 @@ The API will return an array of JSON object. Note that, there could be additiona
 [
   {
     "id": "5553e0b4af697c1d70733b87",
-    "description": "#welcome to Crazy Ben",
+    "content": "#welcome to Crazy Ben",
     "numLikes": 0,
     "numComments": 0,
      "createdAt": "2015-05-11T23:40:13.440Z",
@@ -49,7 +49,7 @@ The API will return an array of JSON object. Note that, there could be additiona
   },
   {
     "id": "5553e0ddaf697c1d70733b89",
-    "description": "#hoedown deployment goodies",
+    "content": "#hoedown deployment goodies",
     "numLikes": 2,
     "numComments": 0,
     "createdAt": "2015-05-13T23:40:13.440Z",
