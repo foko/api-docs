@@ -9,16 +9,19 @@ GET https://api.foko.io/public/api/v0/posts
 * **access_token** - (required) please request a access token by contacting Foko support 'api@foko.co'
 * **hashtag** - query posts with specific hashtag
 * **hashtags** - query post with specific hashtags, delimited by coma
-* **include** - include additional data, currently, only 'owner' is supported. This will return poster data too.
+* **include** - include additional data
+  * **owner** including posting user data, such as firstName, lastName and avatar
+  * **comments** including available comments for this post
+  * **likes** including available likes
 * **limit** - the maximum number of results (records) to return. Default is 100, but max is 500. 
 * **type** - (DEPRECATED) By default, always return "image" type post, including individual photos in albums.
 * **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
-* specify time period
+* specify timestamp range for search "createdAt" or "touchedAt", specified by "ordering". For example, if ordering is "createdAt" (default), searching is against post creation time; if ordering is "touchedAt", searching is against "touchedAt" which records last commenting or liking on this post.
   * **from** - start time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z"
   * **to** - end time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z"
 * ordering paramters:
-  * **descending** - available values: "createdAt", "updatedAt", "likeCount"
-  * **ascending** - avavilable values: "createdAt", "updatedAt", "likeCount"
+  * **descending** - available values: "createdAt", "touchedAt"
+  * **ascending** - avavilable values: "createdAt", "touchedAt"
   * if not specified, then by default, it's ordered by "createdAt" descending order, i.e., "descending=createdAt"
 
 *Examples*
