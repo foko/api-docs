@@ -9,7 +9,7 @@ GET https://api.foko.io/public/api/v0/posts
 * **access_token** - (required) please request a access token by contacting Foko support 'api@foko.co'
 * **hashtag** - query posts with specific hashtag
 * **hashtags** - query post with specific hashtags, delimited by coma
-* **include** - include additional data
+* **include** - include additional dependent objects. Use comma to separate them, for example, "include=owner,comments,likes"
   * **owner** including posting user data, such as firstName, lastName and avatar
   * **comments** including available comments for this post
   * **likes** including available likes
@@ -40,7 +40,9 @@ The API will return an array of JSON object. Note that, there could be additiona
     "id": "5553e0b4af697c1d70733b87",
     "description": "#welcome to Crazy Ben",
     "numLikes": 0,
-    "createdAt": "2015-05-13T23:39:32.514Z",
+    "numComments": 0,
+     "createdAt": "2015-05-11T23:40:13.440Z",
+    "touchedAt": "2015-05-11T23:40:14.440Z",
     "largeImgURL": "https://s3.amazonaws.com/foko-media/playground/image/post/4d592cb0-f9c9-11e4-bcc5-114b056a7c6a/Photo_20150513_193845LARGE.jpg",
     "mediumImgURL": "https://s3.amazonaws.com/foko-media/playground/image/post/4d592cb0-f9c9-11e4-bcc5-114b056a7c6a/Photo_20150513_193845LARGE-medium.jpg",
     "type": "image"
@@ -48,33 +50,65 @@ The API will return an array of JSON object. Note that, there could be additiona
   {
     "id": "5553e0ddaf697c1d70733b89",
     "description": "#hoedown deployment goodies",
-    "numLikes": 0,
+    "numLikes": 2,
+    "numComments": 0,
     "createdAt": "2015-05-13T23:40:13.440Z",
+    "touchedAt": "2015-05-14T23:40:13.440Z",
     "largeImgURL": "https://s3.amazonaws.com/foko-media/playground/image/post/59ee9c30-f9c9-11e4-bcc5-114b056a7c6a/Photo_20150513_193946LARGE.jpg",
     "mediumImgURL": "https://s3.amazonaws.com/foko-media/playground/image/post/59ee9c30-f9c9-11e4-bcc5-114b056a7c6a/Photo_20150513_193946LARGE-medium.jpg",
-    "type": "weblink",
-    "meta": {
-      "title": "Elon Musk Has Good News For Tesla Fans",
-      "url": "http://abcnews.go.com/Technology/elon-musk-good-news-tesla-fans/story?id=33507368",
-      "faviconUrl": "(favicon url, if any)"
-    }
+    "type": "image"
   },
   {
     "id": "5553e6a9af697c1d70733bc4",
-    "description": "[Test_Scenario_May_13,_2015_8:07_PM] #eligendi #et et #porro repellendus ##quia voluptates ##doloremque odit\nreprehenderit #dicta #est ####tempore molestiae #error est ###sint\nrepudiandae #voluptatem #velit #excepturi #eveniet #labore et iusto\ndolorem #provident ipsa ###vel #####nihil #molestias @Daryl Franecki rerum #sit #dolorum\nnumquam sit ##cumque inventore sit #minima #tenetur #id\nofficia delectus ##iure quis",
-    "numLikes": 5,
+    "content": "[Test_Scenario_May_13,_2015_8:07_PM] #eligendi #et et #porro repellendus ##quia voluptates ##doloremque odit\nreprehenderit #dicta #est ####tempore molestiae #error est ###sint\nrepudiandae #voluptatem #velit #excepturi #eveniet #labore et iusto\ndolorem #provident ipsa ###vel #####nihil #molestias @Daryl Franecki rerum #sit #dolorum\nnumquam sit ##cumque inventore sit #minima #tenetur #id\nofficia delectus ##iure quis",
+    "numLikes": 1,
+    "numComments": 2,
     "createdAt": "2015-05-14T00:04:57.989Z",
+    "touchedAt": "2015-06-14T00:04:57.989Z",
     "largeImgURL": "https://s3.amazonaws.com/foko-media/playground/image/post/dae5b7d0-f9cc-11e4-bcc5-114b056a7c6a/foko-acceptance-test-large.jpg",
     "mediumImgURL": "https://s3.amazonaws.com/foko-media/playground/image/post/dae5b7d0-f9cc-11e4-bcc5-114b056a7c6a/foko-acceptance-test-medium.jpg",
-    "type": "videoBroadcast|video",
-    "meta": {
-      "url": "(url from aws s3 bucket)",
-      "duration": 300 (in seconds)
-    },
+    "type": "image",
     "ownerFirstName": "John",
     "ownerLastName": "Down",
     "ownerProfileURL": "PROFILE_URL",
-    "ownerAvatarURL": "AVATAR_IMAGE_URL"
+    "ownerAvatarURL": "AVATAR_IMAGE_URL",
+    "comments": [
+      {
+        "id": "58417b672ab1b5469a999e98",
+        "type": "text",
+        "content": "Looks great!",
+        "createdAt": "2016-12-02T13:47:19.248Z",
+        "touchedAt": "2016-12-02T13:47:19.263Z",
+        "ownerFirstName": "Sylvia",
+        "ownerLastName": "Schade",
+        "ownerUsername": "sylvia.schade@foko.co",
+        "ownerProfileURL": "PROFILE_URL",
+        "ownerAvatarURL": "AVATAR_IMAGE_URL"
+      },
+      {
+        "id": "58417b8a2ab1b5469a999e9b",
+        "type": "image",
+        "content": "Looks a bit empty",
+        "createdAt": "2016-12-02T13:47:54.487Z",
+        "touchedAt": "2016-12-02T13:47:54.499Z",
+        "ownerFirstName": "Sylvia",
+        "ownerLastName": "Schade",
+        "ownerUsername": "sylvia.schade@foko.co",
+        "ownerProfileURL": "PROFILE_URL",
+        "ownerAvatarURL": "AVATAR_IMAGE_URL"
+      }
+    ],
+    "likes": [
+      {
+        "id": "58417b5b0f530f3f91131eab",
+        "createdAt": "2016-12-02T13:47:07.336Z",
+        "ownerFirstName": "Sylvia",
+        "ownerLastName": "Schade",
+        "ownerUsername": "sylvia.schade@foko.co",
+        "ownerProfileURL": "PROFILE_URL",
+        "ownerAvatarURL": "AVATAR_IMAGE_URL"
+      }
+    ]
   }
 ]
 ```
