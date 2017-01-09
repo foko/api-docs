@@ -141,7 +141,7 @@ GET https://api.foko.io/public/api/v0/feed
 /public/api/v0/feed?access_token=[token]&limit=0&skip=50&channelId=58417b5b0f530f3f91131FFF
 /public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=pokedAt
 /public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=pokedAt&include=comment,like
-/public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=touchedAt&include=comments,likes&from=2016-03-01&to=2016-03-15
+/public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=pokedAt&include=comments,likes&from=2016-03-01&to=2016-03-15
 ```
 ### Sample Response JSON
 The API will return an array of JSON object. Here is a sample response:
