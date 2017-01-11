@@ -128,20 +128,20 @@ GET https://api.foko.io/public/api/v0/feed
   * **likes** including available likes
 * **limit** - the maximum number of results (records) to return. Default is 100, but max is 500. 
 * **skip** - the specified number of returned records to skip, which is useful to paginate responses. Default is 0.
-* specify timestamp range for search "createdAt" or "pokedAt", specified by "ordering". For example, if ordering is "createdAt" (default), searching is against post creation time; if ordering is "touchedAt", searching is against "touchedAt" which records last commenting or liking timestamp on this post.
+* specify timestamp range for search "createdAt" or "pokedAt", which is specified via "ordering" parameter. 
   * **from** - start time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z"
   * **to** - end time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z"
 * ordering paramters:
   * **descending** - available values: "createdAt", "pokedAt"
   * **ascending** - avavilable values: "createdAt", "pokedAt"
   * if not specified, then by default, it's ordered by "pokedAt" descending order, i.e., "descending=pokedAt"
-  * use "pokedAt" to reflect feed post timestamp changes caused by commenting.
+  * use "pokedAt" to reflect feed post timestamp changes caused by commenting. Note that liking a photo will not push the "pokedAt" timestamp forward.
 *Examples*
 ```
 /public/api/v0/feed?access_token=[token]&limit=0&skip=50&channelId=58417b5b0f530f3f91131FFF
-/public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=pokedAt
-/public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=pokedAt&include=comments,likes
-/public/api/v0/feed?access_token=[token]&limit=50&skip=50&ascending=pokedAt&include=comments,likes&from=2016-03-01&to=2016-03-15
+/public/api/v0/feed?access_token=[token]&limit=50&skip=50&descending=pokedAt
+/public/api/v0/feed?access_token=[token]&limit=50&skip=50&descending=pokedAt&include=comments,likes
+/public/api/v0/feed?access_token=[token]&limit=50&skip=50&descending=pokedAt&include=comments,likes&from=2016-03-01&to=2016-03-15
 ```
 ### Sample Response JSON
 The API will return an array of JSON object. Here is a sample response:
