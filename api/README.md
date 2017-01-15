@@ -1,7 +1,12 @@
+### Table of Contents
+**[Fetch Your Company's Photo Posts]**  
+**[Fetch Your Company's Channel Feed]**  
+**[Fetch Your Company's Daily Metrics]**  
+
 # Foko public API (V0)
 
-## Retrieve Company's Photo Stream
-This public api retrieves all photo posts for your company with Foko system. Note that album photos are included as individual posts.
+## Fetch Your Company's Photo Posts
+This public api retrieves all photo only posts for your company with Foko system. Note that album photos are included as individual posts.
 ### Url Endpoint
 ```
 GET https://api.foko.io/public/api/v0/posts
@@ -114,15 +119,15 @@ The API will return an array of JSON object. Here is a sample response:
 ]
 ```
 
-## Retrieve Company's Photo Feed
-This public api mimics Foko client feed where album photos are embeded in album post. Commenting will push a feed post to the top, but liking will not.
+## Fetch Your Company's Channel Feed
+This public api mimics Foko client channel feed where album photos are embeded in album post. Commenting will push a feed post to the top, but liking will not.
 ### Url Endpoint
 ```
 GET https://api.foko.io/public/api/v0/feed
 ```
 ### Query Paramters
 * **access_token** - (required) please request a access token by contacting Foko support 'api@foko.co'
-* **channelId** - If provided, only photos from the specified channel will be returned, otherwise, photos from all public channels of your company will be returned. Please request channelId from Foko support.
+* **channelId** - If provided, only photos from the specified channel will be returned, otherwise, photos from all public channels of your company will be combined and returned. Please request channelId from Foko support.
 * **include** - include additional dependent objects. Use comma to separate them, for example, "include=comments,likes". Note that for this api, "owner" will always be included.
   * **comments** including available comments for this post
   * **likes** including available likes
@@ -307,4 +312,121 @@ The API will return an array of JSON object. Here is a sample response:
     ]
   }
 ]
+```
+
+## Fetch Your Company's Daily Metrics
+This public api returns daily user metrics for your company.
+(To be deployed)
+### Url Endpoint
+```
+GET https://api.foko.io/public/api/v0/dailyStats
+```
+### Query Paramters
+* **access_token** - (required) please request a access token by contacting Foko support 'api@foko.co'
+* **timezone** - The metrics are generated based the provided timezone. By default, it's GMT. Use either timezone name, such as 'America/New_York', or abbreviation, such as "EST".
+* specify timestamp range for search based on "createdAt" or "pokedAt"
+  * **from** - start time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z". If not specified, it's the company's onboarding time with Foko.
+  * **to** - end time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z". If not specified, it's current time.
+### Available Daily Metrics
+* **dailyPostingUsers** total number of unique users that create posts to the channels
+* **dailyCommentingUsers** total number of unique users that comment to the channel posts
+* **dailyLikingUsers** total number of unique users that like the posts or comments
+* **totalUsers** total number of registered users as of the date
+* **dailyActiveUsers** total number of active users who open the apps (iOS, Android or web) at least once. This is also known as DAU.
+
+*Examples*
+```
+/public/api/v0/feed?access_token=[token]&from=2016-01-01
+/public/api/v0/feed?access_token=[token]&from=2016-03-01&to=2016-03-15&timezone=EST
+/public/api/v0/feed?access_token=[token]&timezone=EST
+```
+### Sample Response JSON
+The API will return an array of JSON object. Here is a sample response:
+```
+{
+  "2016-12-01": {
+    "dailyPostingUsers": 5,
+    "dailyCommentingUsers": 2,
+    "dailyLikingUsers": 36,
+    "totalUsers": 1022,
+    "dailyActiveUsers": 90
+  },
+  "2016-12-02": {
+    "dailyPostingUsers": 1,
+    "dailyCommentingUsers": 0,
+    "dailyLikingUsers": 18,
+    "totalUsers": 1025,
+    "dailyActiveUsers": 70
+  },
+  "2016-12-03": {
+    "dailyPostingUsers": 1,
+    "dailyCommentingUsers": 1,
+    "dailyLikingUsers": 8,
+    "totalUsers": 1026,
+    "dailyActiveUsers": 39
+  },
+  "2016-12-04": {
+    "dailyPostingUsers": 0,
+    "dailyCommentingUsers": 0,
+    "dailyLikingUsers": 4,
+    "totalUsers": 1027,
+    "dailyActiveUsers": 45
+  },
+  "2016-12-05": {
+    "dailyPostingUsers": 4,
+    "dailyCommentingUsers": 0,
+    "dailyLikingUsers": 6,
+    "totalUsers": 1027,
+    "dailyActiveUsers": 56
+  },
+  "2016-12-06": {
+    "dailyPostingUsers": 4,
+    "dailyCommentingUsers": 2,
+    "dailyLikingUsers": 19,
+    "totalUsers": 1028,
+    "dailyActiveUsers": 63
+  },
+  "2016-12-07": {
+    "dailyPostingUsers": 9,
+    "dailyCommentingUsers": 5,
+    "dailyLikingUsers": 43,
+    "totalUsers": 1030,
+    "dailyActiveUsers": 102
+  },
+  "2016-12-08": {
+    "dailyPostingUsers": 13,
+    "dailyCommentingUsers": 8,
+    "dailyLikingUsers": 37,
+    "totalUsers": 1030,
+    "dailyActiveUsers": 68
+  },
+  "2016-12-09": {
+    "dailyPostingUsers": 6,
+    "dailyCommentingUsers": 3,
+    "dailyLikingUsers": 37,
+    "totalUsers": 1033,
+    "dailyActiveUsers": 77
+  },
+  "2016-12-10": {
+    "dailyPostingUsers": 15,
+    "dailyCommentingUsers": 3,
+    "dailyLikingUsers": 26,
+    "totalUsers": 1034,
+    "dailyActiveUsers": 83
+  },
+  "2016-12-11": {
+    "dailyPostingUsers": 10,
+    "dailyCommentingUsers": 4,
+    "dailyLikingUsers": 44,
+    "totalUsers": 1035,
+    "dailyActiveUsers": 105
+  },
+  "2016-12-12": {
+    "dailyPostingUsers": 5,
+    "dailyCommentingUsers": 4,
+    "dailyLikingUsers": 34,
+    "totalUsers": 1037,
+    "dailyActiveUsers": 106
+  }
+}
 ```
