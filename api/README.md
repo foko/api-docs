@@ -315,7 +315,7 @@ The API will return an array of JSON object. Here is a sample response:
 ```
 
 ## Fetch Your Company's Daily Metrics
-This public api returns daily user metrics for your company.
+This public api returns daily user metrics for your company. Note that this apil could be slow depending on the amount of data generated.
 (To be deployed)
 ### Url Endpoint
 ```
@@ -324,7 +324,7 @@ GET https://api.foko.io/public/api/v0/dailyStats
 ### Query Paramters
 * **access_token** - (required) please request a access token by contacting Foko support 'api@foko.co'
 * **timezone** - The metrics are generated based the provided timezone. By default, it's GMT. Use either timezone name, such as 'America/New_York', or abbreviation, such as "EST".
-* specify timestamp range for search based on "createdAt" or "pokedAt"
+* specify timestamp range for search based on "createdAt" only.
   * **from** - start time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z". If not specified, it's the company's onboarding time with Foko.
   * **to** - end time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z". If not specified, it's current time.
   
@@ -337,9 +337,9 @@ GET https://api.foko.io/public/api/v0/dailyStats
 
 ### Url Endpoint Examples
 ```
-/public/api/v0/feed?access_token=[token]&from=2016-01-01
-/public/api/v0/feed?access_token=[token]&from=2016-03-01&to=2016-03-15&timezone=EST
-/public/api/v0/feed?access_token=[token]&timezone=EST
+/public/api/v0/dailyStats?access_token=[token]&from=2016-01-01&timezone=EST
+/public/api/v0/dailyStats?access_token=[token]&from=2016-03-01&to=2016-03-15&timezone=EST
+/public/api/v0/dailyStats?access_token=[token]&timezone=EST
 ```
 ### JSON Response Examples
 The API will return a JSON object, instead of an array. Here is a sample response:
