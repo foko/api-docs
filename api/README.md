@@ -1,9 +1,8 @@
-### Table of Contents
-**[Fetch Your Company's Photo Posts]**  
-**[Fetch Your Company's Channel Feed]**  
-**[Fetch Your Company's Daily Metrics]**  
-
 # Foko public API (V0)
+## Table of Contents
+**[Fetch Your Company's Photo Posts](#fetch-your-companys-photo-posts)**  
+**[Fetch Your Company's Channel Feed](#fetch-your-companys-channel-feed)**  
+**[Fetch Your Company's Daily Metrics](#fetch-your-companys-daily-metrics)**  
 
 ## Fetch Your Company's Photo Posts
 This public api retrieves all photo only posts for your company with Foko system. Note that album photos are included as individual posts.
@@ -30,7 +29,7 @@ GET https://api.foko.io/public/api/v0/posts
   * **ascending** - avavilable values: "createdAt", "touchedAt"
   * if not specified, then by default, it's ordered by "createdAt" descending order, i.e., "descending=createdAt"
 
-*Examples*
+### Url Endpoint Examples
 ```
 /public/api/v0/posts?access_token=[token]&limit=50&hashtag=welcome&descending=createdAt
 /public/api/v0/posts?access_token=[token]&limit=50&hashtags=welcome,annualmeetings&skip=50&ascending=createdAt
@@ -38,7 +37,7 @@ GET https://api.foko.io/public/api/v0/posts
 /public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=touchedAt&include=owner,comments
 /public/api/v0/posts?access_token=[token]&limit=50&skip=50&ascending=touchedAt&include=owner,comments,likes&from=2016-03-01&to=2016-03-15
 ```
-### Sample Response JSON
+### JSON Response Examples
 The API will return an array of JSON object. Here is a sample response:
 ```
 [
@@ -141,14 +140,15 @@ GET https://api.foko.io/public/api/v0/feed
   * **ascending** - avavilable values: "createdAt", "pokedAt"
   * if not specified, then by default, it's ordered by "pokedAt" descending order, i.e., "descending=pokedAt"
   * use "pokedAt" to reflect feed post timestamp changes caused by commenting. Note that liking a photo will not push the "pokedAt" timestamp forward.
-*Examples*
+ 
+### Url Endpoint Examples
 ```
 /public/api/v0/feed?access_token=[token]&limit=0&skip=50&channelId=58417b5b0f530f3f91131FFF
 /public/api/v0/feed?access_token=[token]&limit=50&skip=50&descending=pokedAt
 /public/api/v0/feed?access_token=[token]&limit=50&skip=50&descending=pokedAt&include=comments,likes
 /public/api/v0/feed?access_token=[token]&limit=50&skip=50&descending=pokedAt&include=comments,likes&from=2016-03-01&to=2016-03-15
 ```
-### Sample Response JSON
+### JSON Response Examples
 The API will return an array of JSON object. Here is a sample response:
 ```
 [
@@ -327,6 +327,7 @@ GET https://api.foko.io/public/api/v0/dailyStats
 * specify timestamp range for search based on "createdAt" or "pokedAt"
   * **from** - start time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z". If not specified, it's the company's onboarding time with Foko.
   * **to** - end time in UTC, for example, "2016-04-01", or "2016-03-23 21:22:45.780Z". If not specified, it's current time.
+  
 ### Available Daily Metrics
 * **dailyPostingUsers** total number of unique users that create posts to the channels
 * **dailyCommentingUsers** total number of unique users that comment to the channel posts
@@ -334,14 +335,14 @@ GET https://api.foko.io/public/api/v0/dailyStats
 * **totalUsers** total number of registered users as of the date
 * **dailyActiveUsers** total number of active users who open the apps (iOS, Android or web) at least once. This is also known as DAU.
 
-*Examples*
+### Url Endpoint Examples
 ```
 /public/api/v0/feed?access_token=[token]&from=2016-01-01
 /public/api/v0/feed?access_token=[token]&from=2016-03-01&to=2016-03-15&timezone=EST
 /public/api/v0/feed?access_token=[token]&timezone=EST
 ```
-### Sample Response JSON
-The API will return an array of JSON object. Here is a sample response:
+### JSON Response Examples
+The API will return a JSON object, instead of an array. Here is a sample response:
 ```
 {
   "2016-12-01": {
