@@ -346,88 +346,61 @@ The API will return a JSON object, instead of an array. Here is a sample respons
 ```
 {
   "2016-12-01": {
-    "dailyPostingUsers": 5,
-    "dailyCommentingUsers": 2,
-    "dailyLikingUsers": 36,
-    "totalUsers": 1022,
-    "dailyActiveUsers": 90
+    "dailyPostingUsers": {
+      "count": 5,
+      "usernames": [
+        "username1",
+        "username2",
+        "username3",
+        "username4",
+        "username5"
+      ]
+    },
+    "dailyCommentingUsers": {
+      "count": 2,
+      "usernames": [
+        "username1",
+        "username2"
+      ]
+    },
+    "dailyLikingUsers": {
+      "count": 3,
+      "usernames": [
+        "username1",
+        "username2",
+        "username3"
+      ]
+    },
+    "totalUsers": {
+      "count": 1022
+    },
+    "dailyActiveUsers": {
+      "count": 90
+    }
   },
   "2016-12-02": {
-    "dailyPostingUsers": 1,
-    "dailyCommentingUsers": 0,
-    "dailyLikingUsers": 18,
-    "totalUsers": 1025,
-    "dailyActiveUsers": 70
-  },
-  "2016-12-03": {
-    "dailyPostingUsers": 1,
-    "dailyCommentingUsers": 1,
-    "dailyLikingUsers": 8,
-    "totalUsers": 1026,
-    "dailyActiveUsers": 39
-  },
-  "2016-12-04": {
-    "dailyPostingUsers": 0,
-    "dailyCommentingUsers": 0,
-    "dailyLikingUsers": 4,
-    "totalUsers": 1027,
-    "dailyActiveUsers": 45
-  },
-  "2016-12-05": {
-    "dailyPostingUsers": 4,
-    "dailyCommentingUsers": 0,
-    "dailyLikingUsers": 6,
-    "totalUsers": 1027,
-    "dailyActiveUsers": 56
-  },
-  "2016-12-06": {
-    "dailyPostingUsers": 4,
-    "dailyCommentingUsers": 2,
-    "dailyLikingUsers": 19,
-    "totalUsers": 1028,
-    "dailyActiveUsers": 63
-  },
-  "2016-12-07": {
-    "dailyPostingUsers": 9,
-    "dailyCommentingUsers": 5,
-    "dailyLikingUsers": 43,
-    "totalUsers": 1030,
-    "dailyActiveUsers": 102
-  },
-  "2016-12-08": {
-    "dailyPostingUsers": 13,
-    "dailyCommentingUsers": 8,
-    "dailyLikingUsers": 37,
-    "totalUsers": 1030,
-    "dailyActiveUsers": 68
-  },
-  "2016-12-09": {
-    "dailyPostingUsers": 6,
-    "dailyCommentingUsers": 3,
-    "dailyLikingUsers": 37,
-    "totalUsers": 1033,
-    "dailyActiveUsers": 77
-  },
-  "2016-12-10": {
-    "dailyPostingUsers": 15,
-    "dailyCommentingUsers": 3,
-    "dailyLikingUsers": 26,
-    "totalUsers": 1034,
-    "dailyActiveUsers": 83
-  },
-  "2016-12-11": {
-    "dailyPostingUsers": 10,
-    "dailyCommentingUsers": 4,
-    "dailyLikingUsers": 44,
-    "totalUsers": 1035,
-    "dailyActiveUsers": 105
-  },
-  "2016-12-12": {
-    "dailyPostingUsers": 5,
-    "dailyCommentingUsers": 4,
-    "dailyLikingUsers": 34,
-    "totalUsers": 1037,
-    "dailyActiveUsers": 106
+    "dailyPostingUsers": {
+      "count": 1,
+      "usernames": [
+        "username1"
+      ]
+    },
+    "dailyCommentingUsers": {
+      "count": 0
+    },
+    "dailyLikingUsers": {
+      "count": 18,
+      "usernames": [
+        "username2",
+        "username3"
+      ]
+    },
+    "totalUsers": {
+      "count": 1025
+    },
+    "dailyActiveUsers": {
+      "count": 70
+    }
   }
 }
 ```
